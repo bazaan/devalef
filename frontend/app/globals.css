@@ -1,0 +1,70 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Estilos para vista "océano" de tareas */
+.ocean-view {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+  padding: 1rem;
+}
+
+.task-card {
+  @apply bg-white rounded-lg shadow-md p-4 border-l-4 transition-all duration-300 hover:shadow-lg hover:scale-105;
+}
+
+.task-card.priority-high {
+  @apply border-red-500;
+}
+
+.task-card.priority-medium {
+  @apply border-orange-500;
+}
+
+.task-card.priority-low {
+  @apply border-green-500;
+}
+
+.task-card.status-pending {
+  @apply opacity-90;
+}
+
+.task-card.status-in_progress {
+  @apply opacity-100 ring-2 ring-blue-300;
+}
+
+.task-card.status-completed {
+  @apply opacity-75 bg-gray-50;
+}
+
